@@ -8,7 +8,7 @@ namespace CustomCorrals
 {
     enum PlacementState
     {
-        None, Start, Started
+        None, Start, ReadyToStart, Started
     }
 
     enum PlacementMode

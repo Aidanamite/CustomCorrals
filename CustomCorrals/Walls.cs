@@ -90,6 +90,8 @@ namespace CustomCorrals
             objects.Add(g);
             g.transform.position = start + objects[0].transform.forward * Main.wallLength * index;
             g.Wall = this;
+            if (set?.zone != null)
+                g.Zone = set.zone.Value;
         }
         public void GeneratePost() => GenerateObject(length);
         public void Upgrade()
@@ -160,7 +162,9 @@ namespace CustomCorrals
                 else if (hasPost)
                     Object.Destroy(objects.Last().gameObject);
                 var p = PlacementHandler.CreatePost(null, tallVarient: upgraded);
-                p.GetComponent<WallComponent>().Wall = this;
+                p.Wall = this;
+                if (set?.zone != null)
+                    p.Zone = set.zone.Value;
                 wall.transform.CopyAllTo(p.transform);
                 Object.Destroy(wall.gameObject);
                 objects[s] = p;

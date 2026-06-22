@@ -13,6 +13,7 @@ namespace CustomCorrals
 {
     public class Main : ModEntryPoint
     {
+        public const string VERSION = "2.1.1";
         internal static Assembly modAssembly = Assembly.GetExecutingAssembly();
         internal static string modName = $"{modAssembly.GetName().Name}";
         internal static string modDir = $"{System.Environment.CurrentDirectory}\\SRML\\Mods\\{modName}";

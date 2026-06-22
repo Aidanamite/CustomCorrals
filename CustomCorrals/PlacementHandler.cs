@@ -101,7 +101,7 @@ namespace CustomCorrals
                 }
                 else if (Main.step.WasPressed)
                     Main.CreateModeUI(this);
-            } else if (state == PlacementState.Start)
+            } else if (state == PlacementState.ReadyToStart)
             {
                 GetHint(Main.confirm).Text = "Confirm start point";
                 GetHint(Main.back).Text = "Cancel placement";
@@ -140,8 +140,9 @@ namespace CustomCorrals
                     if (Vector3.Distance(n, hit.point) <= Config.snapDistance)
                         hit.point = n;
                 }
-                if (state == PlacementState.Start)
+                if (state == PlacementState.Start || state == PlacementState.ReadyToStart)
                 {
+                    state = PlacementState.ReadyToStart;
                     if (mode == PlacementMode.Wall)
                     {
                         placingWalls[0][0].transform.position = hit.point;
@@ -149,7 +150,8 @@ namespace CustomCorrals
                     }
                     else if (mode == PlacementMode.Platform)
                         placingPlatform.ChangePoint(hit.point);
-                } else if (state == PlacementState.Started)
+                }
+                else if (state == PlacementState.Started)
                 {
                     if (mode == PlacementMode.Wall)
                     {
